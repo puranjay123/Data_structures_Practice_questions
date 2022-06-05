@@ -13,8 +13,11 @@ class Solution:
             elif(arr[mid]>K):
                 
                 high=mid-1
+            elif(arr[mid]<K):
+                low=mid+1
             else:
                 low=mid+1
+                
                 
         return -1        
 #{ 
