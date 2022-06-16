@@ -1,20 +1,15 @@
 class Solution:
-    def sortedSquares(self, A: List[int]) -> List[int]:
-        return_array = [0] * len(A)
-        write_pointer = len(A) - 1
-        left_read_pointer = 0
-        right_read_pointer = len(A) - 1
-        left_square = A[left_read_pointer] ** 2
-        right_square = A[right_read_pointer] ** 2
-        while write_pointer >= 0:
-            if left_square > right_square:
-                return_array[write_pointer] = left_square
-                left_read_pointer += 1
-                left_square = A[left_read_pointer] ** 2
+    def sortedSquares(self, nums: List[int]) -> List[int]:
+        
+        result = [None] * len(nums)
+        left,right=0,len(nums)-1
+        for index in range(len(nums)-1,-1,-1):
+            if abs(nums[left])> abs(nums[right]):
+                result[index] = nums[left]** 2
+                left +=1
             else:
-                return_array[write_pointer] = right_square
-                right_read_pointer -= 1
-                right_square = A[right_read_pointer] ** 2
-            write_pointer -= 1
-        return return_array
+                result[index] = nums[right]**2
+                right-=1
+        return result
+        
         
