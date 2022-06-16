@@ -1,9 +1,6 @@
 class Solution:
     def sortedSquares(self, nums: List[int]) -> List[int]:
-        length=len(nums)
-        square=[]
+        return sorted([v**2 for v in nums])
         
-        for i in range(length):
-            square.append(nums[i]*nums[i])
-        square.sort()
-        return square
+        
+        
