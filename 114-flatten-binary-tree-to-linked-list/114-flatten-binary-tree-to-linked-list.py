@@ -5,16 +5,33 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    
-    def __init__(self):
-        self.prev = None
+    def flatten(self, root: Optional[TreeNode]) -> None:
+        """
+        Do not return anything, modify root in-place instead.
+        """
+        def dfs(root):
+            if not root:
+                return None
+            leftEnd =  dfs(root.left)
+            rightEnd = dfs(root.right)
+            if root.left:
+                leftEnd.right =root.right
+                root.right = root.left
+                root.left = None
+            
+            if rightEnd:
+                last = rightEnd
+                return last
+            if leftEnd:
+                last = leftEnd
+                return last
+            if root:
+                last = root
+                return last
+            
+        dfs(root)
+            
+            
 
-    def flatten(self, root):
-        if not root:
-            return None
-        self.flatten(root.right)
-        self.flatten(root.left)
-
-        root.right = self.prev
-        root.left = None
-        self.prev = root
+        
+        
