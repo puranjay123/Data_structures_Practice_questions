@@ -1,16 +1,27 @@
 class Solution:
-    @cache
+
     def climbStairs(self, n: int) -> int:
-        
-#         Apprach 2
+#       APproach 3(constant space)
         if n==1:
             return 1
-        res = [0 for i in range(n)]
-        res[0]=1
-        res[1]=2
+        a,b =1,2
         for i in range(2,n):
-            res[i] = res[i-1]+res[i-2]
-        return res[-1]
+            tmp = b
+            b = a+b
+            a= tmp
+        return b
+            
+        
+        
+#         Apprach 2
+        # if n==1:
+        #     return 1
+        # res = [0 for i in range(n)]
+        # res[0]=1
+        # res[1]=2
+        # for i in range(2,n):
+        #     res[i] = res[i-1]+res[i-2]
+        # return res[-1]
         
         #Approach1
         
