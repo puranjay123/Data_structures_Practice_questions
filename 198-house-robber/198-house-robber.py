@@ -1,15 +1,21 @@
 class Solution:
     def rob(self, nums: List[int]) -> int:
-        if not nums:
-            return 0
-        if len(nums) ==1:
-            return nums[0]
-        dp = [0]*len(nums)
-        dp[0] = nums[0]
-        dp[1] = max(nums[0],nums[1])
-        for i in range(2,len(nums)):
-            dp[i] = max(nums[i] +dp[i-2],dp[i-1])
-        return dp[-1]
+        prev2,prev,cur =0,0,0
+        for i in nums:
+            cur = max(prev,prev2+i)
+            prev2 = prev
+            prev = cur
+        return cur
+        # if not nums:
+        #     return 0
+        # if len(nums) ==1:
+        #     return nums[0]
+        # dp = [0]*len(nums)
+        # dp[0] = nums[0]
+        # dp[1] = max(nums[0],nums[1])
+        # for i in range(2,len(nums)):
+        #     dp[i] = max(nums[i] +dp[i-2],dp[i-1])
+        # return dp[-1]
         # memo = [-1 for i in range(len(nums))]
         # i=len(nums)-1
         # if (i<0):
